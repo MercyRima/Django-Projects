@@ -1,11 +1,17 @@
 from django.db import models
-from teacher.models import Teacher
+from course.models import Course
 
 # Create your models here.
-class Course(models.Model):
-	name = models.CharField(max_length = 50)
-	duration_in_months = models.SmallIntegerField()
-	course_number = models.CharField(max_length = 50)
-	description = models.TextField(max_length = 20)
-	teacher=models.ForeignKey(Teacher,on_delete=models.PROTECT)
-	
+
+class Student(models.Model):
+	first_name = models.CharField(max_length = 50)
+	last_name = models.CharField(max_length = 50)
+	date_of_birth = models.DateField()
+	registration_number = models.CharField(max_length = 20)
+	place_of_recidance = models.CharField(max_length = 20)
+	phone_number = models.CharField(max_length = 16)
+	email = models.EmailField(max_length = 70)
+	guardian_phone = models.CharField(max_length = 16)
+	id_number = models.IntegerField()
+	date_joined = models.DateField()
+	courses=models.ManyToManyField(Course)
